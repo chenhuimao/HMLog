@@ -6,6 +6,13 @@
 //  Copyright © 2020 chenhuimao. All rights reserved.
 //
 
+// You can define HMPrintEnable macro before import HMLog.h
+#ifdef DEBUG
+#define HMPrintEnable 1
+#else
+#define HMPrintEnable 0
+#endif
+
 #import "ViewController.h"
 #import "HMLog.h"
 
@@ -17,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 - (IBAction)log1 {
@@ -39,8 +45,9 @@
     short s = 1991;
     float f = 3.26;
     bool b = true;
+    SEL mySEL = @selector(viewWillAppear:);
 
-    HMLog(self.view.backgroundColor, self.view.frame, self.view.center,  self.view.bounds.size, self.view.alignmentRectInsets, self.title, self.automaticallyAdjustsScrollViewInsets, self.navigationController, [self class], btn, btn.tag, btn.isHidden, event.timestamp, @selector(viewDidAppear:), @selector(viewDidLoad), @"Copyright (c) 2020 Huimao Chen", c, s, f, b);
+    HMLog(self.view.backgroundColor, self.view.frame, self.view.center,  self.view.bounds.size, self.view.alignmentRectInsets, self.title, self.automaticallyAdjustsScrollViewInsets, self.navigationController, [self class], btn, btn.tag, btn.isHidden, event.timestamp, mySEL, @selector(viewDidLoad), @"Copyright (c) 2020 Huimao Chen", c, s, f, b);
 }
 
 - (IBAction)print1 {

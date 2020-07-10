@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230C5F7024B8514800621AD8 /* CustomizeFormatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230C5F6F24B8514800621AD8 /* CustomizeFormatViewController.m */; };
 		235B774C24B724140002625F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B774B24B724140002625F /* AppDelegate.m */; };
 		235B775224B724140002625F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B775124B724140002625F /* ViewController.m */; };
 		235B775524B724140002625F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 235B775324B724140002625F /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		230C5F6E24B8514800621AD8 /* CustomizeFormatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizeFormatViewController.h; sourceTree = "<group>"; };
+		230C5F6F24B8514800621AD8 /* CustomizeFormatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizeFormatViewController.m; sourceTree = "<group>"; };
 		235B774724B724140002625F /* HMLogDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HMLogDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		235B774A24B724140002625F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		235B774B24B724140002625F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +67,8 @@
 				235B774B24B724140002625F /* AppDelegate.m */,
 				235B775024B724140002625F /* ViewController.h */,
 				235B775124B724140002625F /* ViewController.m */,
+				230C5F6E24B8514800621AD8 /* CustomizeFormatViewController.h */,
+				230C5F6F24B8514800621AD8 /* CustomizeFormatViewController.m */,
 				235B775324B724140002625F /* Main.storyboard */,
 				235B775624B724150002625F /* Assets.xcassets */,
 				235B775824B724150002625F /* LaunchScreen.storyboard */,
@@ -153,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				235B775224B724140002625F /* ViewController.m in Sources */,
+				230C5F7024B8514800621AD8 /* CustomizeFormatViewController.m in Sources */,
 				235B774C24B724140002625F /* AppDelegate.m in Sources */,
 				235B775D24B724150002625F /* main.m in Sources */,
 			);
