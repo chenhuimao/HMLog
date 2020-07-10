@@ -17,9 +17,9 @@
 #define HMLogEnable 1
 #endif  // HMLogEnable
 
-#ifndef HMLogUseNSLog
-#define HMLogUseNSLog 0
-#endif  // HMLogUseNSLog
+#ifndef HMPrintEnable
+#define HMPrintEnable 1
+#endif  // HMPrintEnable
 
 #ifndef HMLogFormat
 #define HMLogFormat(INDEX, VAR) _HMLogFormat(INDEX, VAR)
@@ -31,14 +31,25 @@
 
 #pragma mark - Core
 
+#define HMFormatString(...) \
+        _HMFormatString(HMArgCount(__VA_ARGS__), __LINE__, __func__ HMForeach(HMLogFormat, __VA_ARGS__))
+
 #if HMLogEnable
     #define HMLog(...) \
-            _HMLog(HMArgCount(__VA_ARGS__), __LINE__, __func__ HMForeach(HMLogFormat, __VA_ARGS__))
+            _HMLog(HMFormatString(__VA_ARGS__))
 #else
     #define HMLog(...)
 #endif  //  HMLogEnable
 
-static inline void _HMLog(int count, ...) { //  count, line, func, [index: var =, encode, var]
+#if HMPrintEnable
+    #define HMPrint(...) \
+            _HMPrint(HMFormatString(__VA_ARGS__))
+#else
+    #define HMPrint(...)
+#endif  //  HMPrintEnable
+
+
+static inline NSString * _HMFormatString(int count, ...) { //  count, line, func, [index: var =, encode, var]
     NSMutableString *result = [[NSMutableString alloc] init];
     
     va_list v;
@@ -142,12 +153,15 @@ static inline void _HMLog(int count, ...) { //  count, line, func, [index: var =
     }
     va_end(v);
     
-    #if HMLogUseNSLog
-    [result insertString:@"\n" atIndex:0];
-    NSLog(@"%@\n", result);
-    #else
-    printf("%s\n", result.UTF8String);
-    #endif // HMLogUseNSLog
+    return [result copy];
+}
+
+static inline void _HMLog(NSString *str) {
+    NSLog(@"\n%@", str);
+}
+
+static inline void _HMPrint(NSString *str) {
+    printf("%s\n", str.UTF8String);
 }
 
 #pragma mark - Helper
