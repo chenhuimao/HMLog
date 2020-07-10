@@ -6,13 +6,18 @@
 //  Copyright © 2020 chenhuimao. All rights reserved.
 //
 
-// You can define HMLogFormat macro before import HMLog.h
-#define HMLogFormat(INDEX, VAR) \
-        , HMStringify(INDEX:), @encode(__typeof__(VAR)), (VAR)
-
+// You can define HMLogPrefix macro before import HMLog.h
+#define HMLogPrefix(INDEX, VAR) \
+        HMStringify(INDEX:)
 // No Prefix format
-//#define HMLogFormat(INDEX, VAR) \
-//        , "", @encode(__typeof__(VAR)), (VAR)
+//#define HMLogPrefix(INDEX, VAR) ""
+
+// You can define HMLogHeaderFormatString macro before import HMLog.h
+#define HMLogHeaderFormatString(FUNC, LINE) \
+        [NSString stringWithFormat:@"----[%d]???????????[%d]----\n", LINE, LINE]
+// Just the dividing line
+//#define HMLogHeaderFormatString(FUNC, LINE) \
+//        [NSString stringWithFormat:@"*******************\n"]
 
 #import "CustomizeFormatViewController.h"
 #import "HMLog.h"

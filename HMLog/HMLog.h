@@ -21,19 +21,26 @@
 #define HMPrintEnable 1
 #endif  // HMPrintEnable
 
-#ifndef HMLogFormat
-#define HMLogFormat(INDEX, VAR) _HMLogFormat(INDEX, VAR)
-#endif  // HMLogFormat
+#ifndef HMLogPrefix
+#define HMLogPrefix(INDEX, VAR) HMStringify(INDEX: VAR =)
+#endif  // HMLogPrefix
 
-// Default format
-#define _HMLogFormat(INDEX, VAR) \
-        , HMStringify(INDEX: VAR =), @encode(__typeof__(VAR)), (VAR)
+#ifndef HMLogHeaderFormatString
+#define HMLogHeaderFormatString(FUNC, LINE) \
+        [NSString stringWithFormat:@"========================    %s [%d]    ========================\n", FUNC, LINE]
+#endif  // HMLogHeaderFormatString
 
 #pragma mark - Core
 
-#define HMFormatString(...) \
-        _HMFormatString(HMArgCount(__VA_ARGS__), __LINE__, __func__ HMForeach(HMLogFormat, __VA_ARGS__))
+// format
+#define _HMLogFormat(INDEX, VAR) \
+        , HMLogPrefix(INDEX, VAR), @encode(__typeof__(VAR)), (VAR)
 
+// HMFormatString
+#define HMFormatString(...) \
+        _HMFormatString(HMArgCount(__VA_ARGS__), __LINE__, __func__ HMForeach(_HMLogFormat, __VA_ARGS__))
+
+// HMLog
 #if HMLogEnable
     #define HMLog(...) \
             _HMLog(HMFormatString(__VA_ARGS__))
@@ -41,6 +48,7 @@
     #define HMLog(...)
 #endif  //  HMLogEnable
 
+// HMPrint
 #if HMPrintEnable
     #define HMPrint(...) \
             _HMPrint(HMFormatString(__VA_ARGS__))
@@ -55,10 +63,12 @@ static inline NSString * _HMFormatString(int count, ...) { //  count, line, func
     va_list v;
     va_start(v, count);
     
+    //  handle header
     int line = va_arg(v, int);
     char *func = va_arg(v, char *);
-    [result appendFormat:@"========================    %s [%d]    ========================\n", func, line];
+    [result appendString:((void)(line), (void)(func), HMLogHeaderFormatString(func, line))];
     
+    // handle arguments
     for (int i = 0; i < count; ++i) {
         char *format = va_arg(v, char *);
         char *type = va_arg(v, char *);
