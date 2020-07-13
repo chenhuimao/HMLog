@@ -70,10 +70,10 @@ static inline NSString * _HMFormatString(int count, ...) { //  count, line, func
     
     // handle arguments
     for (int i = 0; i < count; ++i) {
-        char *format = va_arg(v, char *);
+        char *prefix = va_arg(v, char *);
         char *type = va_arg(v, char *);
         
-        id obj = @"unknown type";
+        id obj = nil;
         if (strcmp(type, @encode(id)) == 0) {   //  "@"   id
             id actual = va_arg(v, id);
             obj = actual;
@@ -157,9 +157,17 @@ static inline NSString * _HMFormatString(int count, ...) { //  count, line, func
         } else if (strcmp(type, @encode(unsigned short)) == 0) {            //  "S"     unsigned short
             unsigned short actual = (unsigned short)va_arg(v, unsigned int);
             obj = [NSNumber numberWithUnsignedShort:actual];
+            
+        } else {
+            [result appendString:@"Error: unknown type"];
+            break;
         }
         
-        [result appendFormat:@"%s %@\n", format, obj];
+        if (strlen(prefix) == 0) {
+            [result appendFormat:@"%@\n", obj];
+        } else {
+            [result appendFormat:@"%s %@\n", prefix, obj];
+        }
     }
     va_end(v);
     
@@ -188,7 +196,7 @@ static inline void _HMPrint(NSString *str) {
 #define HMArgCount(...) _HMArgCount(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
 #define _HMArgCount(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, COUNT, ...) COUNT
 
-/// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(index, arg)
+/// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(index, arg). Inspired by https://github.com/jspahrsummers/libextobjc/blob/master/extobjc/metamacros.h
 #define HMForeach(MACRO, ...) _HMForeach(MACRO, HMConcat(_HMForeach, HMArgCount(__VA_ARGS__)), __VA_ARGS__)
 #define _HMForeach(MACRO, HMForeachN, ...) HMForeachN(MACRO, __VA_ARGS__)
 
