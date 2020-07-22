@@ -41,12 +41,12 @@
 
 #ifndef HMLogHeaderFormatString
 #define HMLogHeaderFormatString(FUNC, LINE) \
-        [NSString stringWithFormat:@"========================    %s [%d]    ========================\n", FUNC, LINE]
+        [NSString stringWithFormat:@"================  %s [%d]  ================\n", FUNC, LINE]
 #endif  // HMLogHeaderFormatString
 
 #pragma mark - Core
 
-// format
+// format, private macro
 #define _HMLogFormat(INDEX, VAR) \
         , HMLogPrefix(INDEX, VAR), @encode(__typeof__(VAR)), (VAR)
 
