@@ -44,6 +44,10 @@
         [NSString stringWithFormat:@"================  %s [%d]  ================\n", FUNC, LINE]
 #endif  // HMLogHeaderFormatString
 
+#ifndef HMLogTypeExtension
+#define HMLogTypeExtension
+#endif  // HMLogTypeExtension
+
 #pragma mark - Core
 
 // format, private macro
@@ -172,7 +176,7 @@ static inline NSString * _HMFormatString(int count, ...) { //  count, line, func
             unsigned short actual = (unsigned short)va_arg(v, unsigned int);
             obj = [NSNumber numberWithUnsignedShort:actual];
             
-        } else {
+        } HMLogTypeExtension else {
             [result appendString:@"Error: unknown type"];
             break;
         }

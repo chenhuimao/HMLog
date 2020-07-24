@@ -34,7 +34,18 @@
 //#define HMLogHeaderFormatString(FUNC, LINE) \
 //        [NSString stringWithFormat:@"*******************\n"]
 
+// You can define HMLogTypeExtension macro before import HMLog.h
+#define HMLogTypeExtension \
+        else if (strcmp(type, @encode(CGVector)) == 0) { \
+            CGVector actual = (CGVector)va_arg(v, CGVector); \
+            obj = NSStringFromCGVector(actual); \
+        } else if (strcmp(type, @encode(CLLocationCoordinate2D)) == 0) { \
+            CLLocationCoordinate2D actual = (CLLocationCoordinate2D)va_arg(v, CLLocationCoordinate2D); \
+            obj = [NSString stringWithFormat:@"latitude: %lf, longitude: %lf", actual.latitude, actual.longitude]; \
+        }
+
 #import "CustomizeFormatViewController.h"
+#import <CoreLocation/CoreLocation.h>
 #import "HMLog.h"
 
 @interface CustomizeFormatViewController ()
@@ -50,7 +61,9 @@
 - (IBAction)log {
     self.displayLab.text = @"Please check the Xcode console output";
 
-    HMLog(self.view.backgroundColor, self.view.frame, self.view.center);
+    CGVector vector = CGVectorMake(110, 119);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(22.512145, 113.9155);
+    HMLog(self.view.backgroundColor, self.view.frame, self.view.center, vector, coordinate);
 }
 
 - (IBAction)print {
