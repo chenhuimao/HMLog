@@ -56,7 +56,7 @@
 
 // HMFormatString
 #define HMFormatString(...) \
-        _HMFormatString(HMArgCount(__VA_ARGS__), __LINE__, __func__ HMForeach(_HMLogFormat, __VA_ARGS__))
+        _HMFormatString(__func__, __LINE__, HMArgCount(__VA_ARGS__) HMForeach(_HMLogFormat, __VA_ARGS__))
 
 // HMLog
 #if HMLogEnable
@@ -75,18 +75,15 @@
 #endif  //  HMPrintEnable
 
 
-static inline NSString * _HMFormatString(int count, ...) { //  count, line, func, [index: var =, encode, var]
+static inline NSString * _HMFormatString(const char *func, int line, int count, ...) { //  func, line, count, [index: var =, encode, var]
     NSMutableString *result = [[NSMutableString alloc] init];
     
-    va_list v;
-    va_start(v, count);
-    
     //  handle header
-    int line = va_arg(v, int);
-    char *func = va_arg(v, char *);
-    [result appendString:((void)(line), (void)(func), HMLogHeaderFormatString(func, line))];
+    [result appendString:HMLogHeaderFormatString(func, line)];
     
     // handle arguments
+    va_list v;
+    va_start(v, count);
     for (int i = 0; i < count; ++i) {
         char *prefix = va_arg(v, char *);
         char *type = va_arg(v, char *);
@@ -123,6 +120,10 @@ static inline NSString * _HMFormatString(int count, ...) { //  count, line, func
         } else if (strcmp(type, @encode(Class)) == 0) {             //  "#"     Class
             Class actual = (Class)va_arg(v, Class);
             obj = NSStringFromClass(actual);
+            
+        } else if (strcmp(type, @encode(char *)) == 0) {            //  "*"     char *
+            char * actual = (char *)va_arg(v, char *);
+            obj = [NSString stringWithFormat:@"%s", actual];
             
         } else if (strcmp(type, @encode(double)) == 0) {            //  "d"     double
             double actual = (double)va_arg(v, double);
