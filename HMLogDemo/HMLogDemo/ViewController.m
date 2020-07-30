@@ -56,7 +56,7 @@
 - (IBAction)log3:(UIButton *)btn forEvent:(UIEvent *)event {
     self.displayLab.text = @"Please check the Xcode console output";
 
-    char c = '*';
+    char c = 'A';
     short s = 1991;
     float f = 3.26;
     bool b = true;

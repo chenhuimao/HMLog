@@ -36,7 +36,7 @@
 #endif  // HMPrintEnable
 
 #ifndef HMLogPrefix
-#define HMLogPrefix(INDEX, VAR) HMStringify(INDEX: VAR =)
+#define HMLogPrefix(index, valueString) [NSString stringWithFormat:@"%d: %s = ", index, valueString]
 #endif  // HMLogPrefix
 
 #ifndef HMLogHeaderFormatString
@@ -51,12 +51,12 @@
 #pragma mark - Core
 
 // format, private macro
-#define _HMLogFormat(INDEX, VAR) \
-        , HMLogPrefix(INDEX, VAR), @encode(__typeof__(VAR)), (VAR)
+#define _HMLogFormat(VAR) \
+        , HMStringify(VAR), @encode(__typeof__(VAR)), (VAR)
 
 // HMFormatString
 #define HMFormatString(...) \
-        _HMFormatString(__func__, __LINE__, HMArgCount(__VA_ARGS__) HMForeach(_HMLogFormat, __VA_ARGS__))
+        HMExpand(_HMFormatString(__func__, __LINE__, HMArgCount(__VA_ARGS__) HMForeach(_HMLogFormat, __VA_ARGS__)))
 
 // HMLog
 #if HMLogEnable
@@ -75,7 +75,7 @@
 #endif  //  HMPrintEnable
 
 
-static inline NSString * _HMFormatString(const char *func, int line, int count, ...) { //  func, line, count, [index: var =, encode, var]
+static inline NSString * _HMFormatString(const char *func, int line, int count, ...) { //  func, line, count, [valueString, TypeEncode, value]
     NSMutableString *result = [[NSMutableString alloc] init];
     
     //  handle header
@@ -85,7 +85,7 @@ static inline NSString * _HMFormatString(const char *func, int line, int count, 
     va_list v;
     va_start(v, count);
     for (int i = 0; i < count; ++i) {
-        char *prefix = va_arg(v, char *);
+        char *valueString = va_arg(v, char *);
         char *type = va_arg(v, char *);
         
         id obj = nil;
@@ -182,11 +182,7 @@ static inline NSString * _HMFormatString(const char *func, int line, int count, 
             break;
         }
         
-        if (strlen(prefix) == 0) {
-            [result appendFormat:@"%@\n", obj];
-        } else {
-            [result appendFormat:@"%s %@\n", prefix, obj];
-        }
+        [result appendFormat:@"%@%@\n", ((void)(valueString), HMLogPrefix(i, valueString)), obj];
     }
     va_end(v);
     
@@ -203,99 +199,34 @@ static inline void _HMPrint(NSString *str) {
 
 #pragma mark - Helper
 
-/// Return a string representation of VALUE
 #define HMStringify(VALUE) _HMStringify(VALUE)
 #define _HMStringify(VALUE) # VALUE
 
-/// Return a result of concatenating A and B
 #define HMConcat(A, B) _HMConcat(A, B)
 #define _HMConcat(A, B) A ## B
 
-/// Return the number of arguments (up to twenty, at least one) provided to the macro.
-#define HMArgCount(...) _HMArgCount(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
-#define _HMArgCount(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, COUNT, ...) COUNT
+/// Return the number of arguments (up to twenty) provided to the macro.
+#define HMArgCount(...) _HMArgCount(A, ##__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+#define _HMArgCount(A, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, COUNT, ...) COUNT
 
-/// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(index, arg). Inspired by https://github.com/jspahrsummers/libextobjc/blob/master/extobjc/metamacros.h
-#define HMForeach(MACRO, ...) _HMForeach(MACRO, HMConcat(_HMForeach, HMArgCount(__VA_ARGS__)), __VA_ARGS__)
-#define _HMForeach(MACRO, HMForeachN, ...) HMForeachN(MACRO, __VA_ARGS__)
+/// If the number of arguments is 0, return 0, otherwise return N.
+#define HMArgCheck(...) _HMArgCheck(A, ##__VA_ARGS__, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, 0)
+#define _HMArgCheck(A, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, OBJ, ...) OBJ
 
-#define _HMForeach1(MACRO, _0)\
-    MACRO(0, _0)
+/// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(arg). Inspired by https://stackoverflow.com/questions/319328/how-to-write-a-while-loop-with-the-c-preprocessor/10542793#10542793
+#define HMForeach(MACRO, ...) HMConcat(_HMForeach, HMArgCheck(__VA_ARGS__)) (MACRO, ##__VA_ARGS__)
+#define _HMForeach() HMForeach
+#define _HMForeach0(MACRO)
+#define _HMForeachN(MACRO, A, ...) MACRO(A) HMDefer(_HMForeach)() (MACRO, ##__VA_ARGS__)
 
-#define _HMForeach2(MACRO, _0, _1) \
-    _HMForeach1(MACRO, _0) \
-    MACRO(1, _1)
+#define HMEmpty()
+#define HMDefer(ID) ID HMEmpty()
 
-#define _HMForeach3(MACRO, _0, _1, _2) \
-    _HMForeach2(MACRO, _0, _1) \
-    MACRO(2, _2)
+/// For more scans
+#define HMExpand(...)   _HMExpand1(_HMExpand1(_HMExpand1(__VA_ARGS__)))
+#define _HMExpand1(...) _HMExpand2(_HMExpand2(_HMExpand2(__VA_ARGS__)))
+#define _HMExpand2(...) _HMExpand3(_HMExpand3(_HMExpand3(__VA_ARGS__)))
+#define _HMExpand3(...) __VA_ARGS__
 
-#define _HMForeach4(MACRO, _0, _1, _2, _3) \
-    _HMForeach3(MACRO, _0, _1, _2) \
-    MACRO(3, _3)
-
-#define _HMForeach5(MACRO, _0, _1, _2, _3, _4) \
-    _HMForeach4(MACRO, _0, _1, _2, _3) \
-    MACRO(4, _4)
-
-#define _HMForeach6(MACRO, _0, _1, _2, _3, _4, _5) \
-    _HMForeach5(MACRO, _0, _1, _2, _3, _4) \
-    MACRO(5, _5)
-
-#define _HMForeach7(MACRO, _0, _1, _2, _3, _4, _5, _6) \
-    _HMForeach6(MACRO, _0, _1, _2, _3, _4, _5) \
-    MACRO(6, _6)
-
-#define _HMForeach8(MACRO, _0, _1, _2, _3, _4, _5, _6, _7) \
-    _HMForeach7(MACRO, _0, _1, _2, _3, _4, _5, _6) \
-    MACRO(7, _7)
-
-#define _HMForeach9(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8) \
-    _HMForeach8(MACRO, _0, _1, _2, _3, _4, _5, _6, _7) \
-    MACRO(8, _8)
-
-#define _HMForeach10(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9) \
-    _HMForeach9(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8) \
-    MACRO(9, _9)
-
-#define _HMForeach11(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10) \
-    _HMForeach10(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9) \
-    MACRO(10, _10)
-
-#define _HMForeach12(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11) \
-    _HMForeach11(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10) \
-    MACRO(11, _11)
-
-#define _HMForeach13(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12) \
-    _HMForeach12(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11) \
-    MACRO(12, _12)
-
-#define _HMForeach14(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13) \
-    _HMForeach13(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12) \
-    MACRO(13, _13)
-
-#define _HMForeach15(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14) \
-    _HMForeach14(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13) \
-    MACRO(14, _14)
-
-#define _HMForeach16(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15) \
-    _HMForeach15(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14) \
-    MACRO(15, _15)
-
-#define _HMForeach17(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16) \
-    _HMForeach16(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15) \
-    MACRO(16, _16)
-
-#define _HMForeach18(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17) \
-    _HMForeach17(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16) \
-    MACRO(17, _17)
-
-#define _HMForeach19(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18) \
-    _HMForeach18(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17) \
-    MACRO(18, _18)
-
-#define _HMForeach20(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19) \
-    _HMForeach19(MACRO, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18) \
-    MACRO(19, _19)
 
 #endif // HMLog_h

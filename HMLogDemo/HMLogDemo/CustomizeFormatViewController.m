@@ -22,10 +22,9 @@
 
 
 // You can define HMLogPrefix macro before import HMLog.h
-#define HMLogPrefix(INDEX, VAR) \
-        HMStringify(INDEX:)
+#define HMLogPrefix(index, valueString) [NSString stringWithFormat:@"%d: ", index]
 // No Prefix format
-//#define HMLogPrefix(INDEX, VAR) ""
+//#define HMLogPrefix(index, valueString) @""
 
 // You can define HMLogHeaderFormatString macro before import HMLog.h
 #define HMLogHeaderFormatString(FUNC, LINE) \
