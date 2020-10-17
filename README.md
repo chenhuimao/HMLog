@@ -1,4 +1,4 @@
-**HMLog** can automatically format and print variables, it contains only one header file(`HMLog.h`)
+**HMLog** can format and print variables automatically, it contains only one header file(`HMLog.h`).
 
 ## Requirements
 
@@ -104,7 +104,7 @@ HMPrint(self.view.bounds.size, self.view.alignmentRectInsets, self.title, self.a
 
 #### HMLogPrefix
 
-**HMLogPrefix** controls the prefix of each variable:
+**HMLogPrefix** defines the prefix of each variable:
 
 ```objective-c
 // Only show index prefix
@@ -129,7 +129,7 @@ HMPrint(self.view.bounds.size, self.view.alignmentRectInsets, self.title, self.a
 ```
 
 #### HMLogTypeExtension
-There is no `CGVector` and `CLLocationCoordinate2D` in the default support types, you can extend it like this:
+By default, HMLog does not support `CGVector` and `CLLocationCoordinate2D`. You can extend types like this:
 
 ```objective-c
 #define HMLogTypeExtension \
@@ -156,8 +156,8 @@ HMPrint(vector, coordinate);
 
 ## Notice
 
-- Only supports up to 20 variables.
-- **All optional parameters should be defined before** `import "HMLog.h"`.
+- Only supports up to 20 variables
+- **All optional parameters should be defined before** `import "HMLog.h"`, or you can modify the source code
 
 ## License
 

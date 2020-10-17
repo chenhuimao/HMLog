@@ -29,6 +29,8 @@
 
 #pragma mark - Parameters
 
+// All optional parameters should be defined before import "HMLog.h", or you can modify the source code
+
 #ifndef HMLogEnable
 #define HMLogEnable 1
 #endif  // HMLogEnable
@@ -207,15 +209,15 @@ static inline void _HMPrint(NSString *str) {
 #define HMConcat(A, B) _HMConcat(A, B)
 #define _HMConcat(A, B) A ## B
 
-/// Return the number of arguments (up to twenty) provided to the macro.
+// Return the number of arguments (up to twenty) provided to the macro.
 #define HMArgCount(...) _HMArgCount(A, ##__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 #define _HMArgCount(A, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, COUNT, ...) COUNT
 
-/// If the number of arguments is 0, return 0, otherwise return N.
+// If the number of arguments is 0, return 0, otherwise return N.
 #define HMArgCheck(...) _HMArgCheck(A, ##__VA_ARGS__, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, 0)
 #define _HMArgCheck(A, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, OBJ, ...) OBJ
 
-/// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(arg). Inspired by https://stackoverflow.com/questions/3136686/is-the-c99-preprocessor-turing-complete/10526117#10526117
+// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(arg). Inspired by https://stackoverflow.com/questions/3136686/is-the-c99-preprocessor-turing-complete/10526117#10526117
 #define HMForeach(MACRO, ...) HMConcat(_HMForeach, HMArgCheck(__VA_ARGS__)) (MACRO, ##__VA_ARGS__)
 #define _HMForeach() HMForeach
 #define _HMForeach0(MACRO)
@@ -224,7 +226,7 @@ static inline void _HMPrint(NSString *str) {
 #define HMEmpty()
 #define HMDefer(ID) ID HMEmpty()
 
-/// For more scans
+// For more scans
 #define HMExpand(...)   _HMExpand1(_HMExpand1(_HMExpand1(__VA_ARGS__)))
 #define _HMExpand1(...) _HMExpand2(_HMExpand2(_HMExpand2(__VA_ARGS__)))
 #define _HMExpand2(...) _HMExpand3(_HMExpand3(_HMExpand3(__VA_ARGS__)))
