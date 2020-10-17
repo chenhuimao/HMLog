@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t5m-DA-Imx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t5m-DA-Imx">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,9 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rtt-IV-XSh">
-                                <rect key="frame" x="10" y="90" width="50" height="40"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rtt-IV-XSh">
+                                <rect key="frame" x="10" y="110" width="50" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4ye-L2-bkh"/>
                                     <constraint firstAttribute="width" constant="50" id="uUt-aF-MVn"/>
@@ -28,9 +29,9 @@
                                     <action selector="log1" destination="BYZ-38-t0r" eventType="touchUpInside" id="QN4-Ql-S9j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1r-88-bMd">
-                                <rect key="frame" x="70" y="90" width="50" height="40"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1r-88-bMd">
+                                <rect key="frame" x="70" y="110" width="50" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="57a-JR-zTm"/>
                                     <constraint firstAttribute="width" constant="50" id="bib-Hz-X94"/>
@@ -40,9 +41,9 @@
                                     <action selector="log2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E6l-MP-b53"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-RO-48G">
-                                <rect key="frame" x="130" y="90" width="50" height="40"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-RO-48G">
+                                <rect key="frame" x="130" y="110" width="50" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Fd6-TT-nQy"/>
                                     <constraint firstAttribute="height" constant="40" id="ItA-GU-Elg"/>
@@ -52,9 +53,9 @@
                                     <action selector="log3:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v8U-EG-FYH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAh-aY-zXS">
-                                <rect key="frame" x="10" y="150" width="140" height="40"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAh-aY-zXS">
+                                <rect key="frame" x="10" y="170" width="140" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Q9I-7h-FFA"/>
                                     <constraint firstAttribute="width" constant="140" id="TWZ-jM-riY"/>
@@ -64,9 +65,9 @@
                                     <action selector="getFormatString1" destination="BYZ-38-t0r" eventType="touchUpInside" id="y2K-eS-EUV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySS-w5-2rQ">
-                                <rect key="frame" x="160" y="150" width="140" height="40"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySS-w5-2rQ">
+                                <rect key="frame" x="160" y="170" width="140" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="RiV-a6-O1O"/>
                                     <constraint firstAttribute="width" constant="140" id="vdu-ch-7JL"/>
@@ -76,9 +77,9 @@
                                     <action selector="getFormatString2" destination="BYZ-38-t0r" eventType="touchUpInside" id="tWn-SG-8qE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnp-1H-2ED">
-                                <rect key="frame" x="190" y="90" width="50" height="40"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnp-1H-2ED">
+                                <rect key="frame" x="190" y="110" width="50" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="lfE-h5-rzP"/>
                                     <constraint firstAttribute="height" constant="40" id="sAR-8a-L3h"/>
@@ -88,9 +89,9 @@
                                     <action selector="print1" destination="BYZ-38-t0r" eventType="touchUpInside" id="NHl-8L-rDi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oa9-ok-Kuk">
-                                <rect key="frame" x="250" y="90" width="50" height="40"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oa9-ok-Kuk">
+                                <rect key="frame" x="250" y="110" width="50" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Qqq-TH-UY8"/>
                                     <constraint firstAttribute="height" constant="40" id="Tg6-rv-8Cy"/>
@@ -100,8 +101,8 @@
                                     <action selector="print2" destination="BYZ-38-t0r" eventType="touchUpInside" id="RML-us-0gX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RpR-90-4TS">
-                                <rect key="frame" x="10" y="205" width="160" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RpR-90-4TS">
+                                <rect key="frame" x="10" y="225" width="160" height="30"/>
                                 <color key="backgroundColor" red="0.69673013687133789" green="0.53282090065891397" blue="0.54128431443865943" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="4gP-dt-gLf"/>
@@ -113,13 +114,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osp-6J-CrI">
-                                <rect key="frame" x="10" y="245" width="300" height="17"/>
+                                <rect key="frame" x="10" y="265" width="300" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RpR-90-4TS" firstAttribute="top" secondItem="wAh-aY-zXS" secondAttribute="bottom" constant="15" id="4uj-4z-AQR"/>
                             <constraint firstItem="fnp-1H-2ED" firstAttribute="centerY" secondItem="Rtt-IV-XSh" secondAttribute="centerY" id="9Mk-KP-qhL"/>
@@ -137,11 +139,10 @@
                             <constraint firstItem="fnp-1H-2ED" firstAttribute="leading" secondItem="h1z-RO-48G" secondAttribute="trailing" constant="10" id="WbB-dO-vcl"/>
                             <constraint firstItem="ySS-w5-2rQ" firstAttribute="centerY" secondItem="wAh-aY-zXS" secondAttribute="centerY" id="dKH-pH-DZP"/>
                             <constraint firstAttribute="trailing" secondItem="osp-6J-CrI" secondAttribute="trailing" constant="10" id="gKq-XP-gUj"/>
-                            <constraint firstItem="Rtt-IV-XSh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="90" id="jTZ-aK-RWt"/>
+                            <constraint firstItem="Rtt-IV-XSh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="110" id="jTZ-aK-RWt"/>
                             <constraint firstItem="RpR-90-4TS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="xOi-mm-iXc"/>
                             <constraint firstItem="oa9-ok-Kuk" firstAttribute="leading" secondItem="fnp-1H-2ED" secondAttribute="trailing" constant="10" id="xkU-CH-0pQ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="HMLogDemo" id="ozh-LE-2T1"/>
                     <connections>
@@ -160,9 +161,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbj-GG-l5F">
-                                <rect key="frame" x="20" y="90" width="50" height="30"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbj-GG-l5F">
+                                <rect key="frame" x="20" y="110" width="50" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="IQk-kh-juF"/>
                                     <constraint firstAttribute="width" constant="50" id="XD4-8B-UKt"/>
@@ -172,9 +173,9 @@
                                     <action selector="log" destination="C97-vN-jjc" eventType="touchUpInside" id="lMf-m4-yNc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c97-bZ-yY2">
-                                <rect key="frame" x="20" y="140" width="130" height="30"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c97-bZ-yY2">
+                                <rect key="frame" x="20" y="160" width="130" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5lz-nP-f1s"/>
                                     <constraint firstAttribute="width" constant="130" id="SdA-In-Jc0"/>
@@ -184,9 +185,9 @@
                                     <action selector="getFormatString" destination="C97-vN-jjc" eventType="touchUpInside" id="7ry-UX-qqi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRZ-Wh-OaY">
-                                <rect key="frame" x="110" y="90" width="60" height="30"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRZ-Wh-OaY">
+                                <rect key="frame" x="110" y="110" width="60" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="O4s-k7-03O"/>
                                     <constraint firstAttribute="height" constant="30" id="ROR-55-Bor"/>
@@ -197,25 +198,25 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLS-YH-8x4">
-                                <rect key="frame" x="10" y="190" width="300" height="17"/>
+                                <rect key="frame" x="10" y="210" width="300" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="GVk-L3-8JB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kLS-YH-8x4" secondAttribute="trailing" constant="10" id="71F-TP-80v"/>
                             <constraint firstItem="hbj-GG-l5F" firstAttribute="leading" secondItem="UXF-Se-BML" secondAttribute="leading" constant="20" id="QRx-qF-vPn"/>
                             <constraint firstItem="vRZ-Wh-OaY" firstAttribute="centerY" secondItem="hbj-GG-l5F" secondAttribute="centerY" id="UwY-DZ-Srf"/>
                             <constraint firstItem="kLS-YH-8x4" firstAttribute="leading" secondItem="UXF-Se-BML" secondAttribute="leading" constant="10" id="VX1-Dd-WhH"/>
                             <constraint firstItem="kLS-YH-8x4" firstAttribute="top" secondItem="c97-bZ-yY2" secondAttribute="bottom" constant="20" id="Zgz-eZ-qHd"/>
-                            <constraint firstItem="hbj-GG-l5F" firstAttribute="top" secondItem="UXF-Se-BML" secondAttribute="top" constant="90" id="cAS-rC-Mcg"/>
+                            <constraint firstItem="hbj-GG-l5F" firstAttribute="top" secondItem="UXF-Se-BML" secondAttribute="top" constant="110" id="cAS-rC-Mcg"/>
                             <constraint firstItem="c97-bZ-yY2" firstAttribute="top" secondItem="hbj-GG-l5F" secondAttribute="bottom" constant="20" id="rpW-5l-qqF"/>
                             <constraint firstItem="vRZ-Wh-OaY" firstAttribute="leading" secondItem="hbj-GG-l5F" secondAttribute="trailing" constant="40" id="u8t-GB-Ay1"/>
                             <constraint firstItem="c97-bZ-yY2" firstAttribute="leading" secondItem="hbj-GG-l5F" secondAttribute="leading" id="zTY-Wv-8IP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="GVk-L3-8JB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Customize Format String" id="vWd-Sw-sog"/>
                     <connections>
@@ -245,4 +246,15 @@
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

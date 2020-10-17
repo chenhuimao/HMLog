@@ -20,6 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// GCC_C_LANGUAGE_STANDARD = gnu99
+
 #ifndef HMLog_h
 #define HMLog_h
 
@@ -213,7 +215,7 @@ static inline void _HMPrint(NSString *str) {
 #define HMArgCheck(...) _HMArgCheck(A, ##__VA_ARGS__, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, 0)
 #define _HMArgCheck(A, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, OBJ, ...) OBJ
 
-/// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(arg). Inspired by https://stackoverflow.com/questions/319328/how-to-write-a-while-loop-with-the-c-preprocessor/10542793#10542793
+/// Each argument will be passed to the MACRO, the MACRO must be this form: MACRO(arg). Inspired by https://stackoverflow.com/questions/3136686/is-the-c99-preprocessor-turing-complete/10526117#10526117
 #define HMForeach(MACRO, ...) HMConcat(_HMForeach, HMArgCheck(__VA_ARGS__)) (MACRO, ##__VA_ARGS__)
 #define _HMForeach() HMForeach
 #define _HMForeach0(MACRO)
