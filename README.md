@@ -1,9 +1,10 @@
-**HMLog** can format and print variables automatically, it contains only one header file(`HMLog.h`).
+**HMLog** can format and print variables automatically, it contains only one header file(`HMLog.h`).  
+[中文介绍](https://juejin.im/post/6886794691879108615)
 
 ## Requirements
 
 - Work on Xcode, Objective-C language
-- UIKit framework
+- Foundation and UIKit framework
 - gnu99 standard
 
 ## Installation
@@ -11,7 +12,7 @@ Download and add the HMLog.h file to your Xcode project. Include HMLog.h whereve
 
 ## Example
 
-#### HMLog
+### HMLog
 
 HMLog is based on NSLog:
 
@@ -33,7 +34,7 @@ HMLog(view.frame, view.tag, view.isHidden);
 Another example(screenshot from the Demo project):
 ![example](./img/example1.jpg)
 
-#### HMPrint
+### HMPrint
 HMPrint is based on printf:
 
 ```objective-c
@@ -51,7 +52,7 @@ HMPrint(view.frame, view.tag, view.isHidden);
 // 2: view.isHidden = NO
 ```
 
-#### HMFormatString
+### HMFormatString
 HMFormatString is used to get the formatted string:
 
 ```objective-c
@@ -66,7 +67,7 @@ printf("%s", self.displayLab.text.UTF8String);
 
 ## Examples of optional parameters
 
-#### HMLogEnable / HMPrintEnable
+### HMLogEnable / HMPrintEnable
 
 ```objective-c
 // Only enable HMPrint in Debug configuration
@@ -78,7 +79,7 @@ printf("%s", self.displayLab.text.UTF8String);
 #import "HMLog.h"
 ```
 
-#### HMLogHeaderFormatString
+### HMLogHeaderFormatString
 
 ```objective-c
 #define HMLogHeaderFormatString(FUNC, LINE) \
@@ -102,7 +103,7 @@ HMPrint(self.view.bounds.size, self.view.alignmentRectInsets, self.title, self.a
 // 6: @selector(viewDidAppear:) = SEL: viewDidAppear:
 ```
 
-#### HMLogPrefix
+### HMLogPrefix
 
 **HMLogPrefix** defines the prefix of each variable:
 
@@ -128,7 +129,7 @@ HMPrint(self.view.bounds.size, self.view.alignmentRectInsets, self.title, self.a
 // 6: SEL: viewDidAppear:
 ```
 
-#### HMLogTypeExtension
+### HMLogTypeExtension
 By default, HMLog does not support `CGVector` and `CLLocationCoordinate2D`. You can extend types like this:
 
 ```objective-c
