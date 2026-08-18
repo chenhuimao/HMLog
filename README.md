@@ -1,3 +1,5 @@
+
+
 **HMLog** can format and print variables automatically, it contains only one header file(`HMLog.h`).  
 [中文介绍](https://juejin.im/post/6886794691879108615)
 
@@ -158,7 +160,7 @@ HMPrint(vector, coordinate);
 ## Notice
 
 - Only supports up to 20 variables
-- **All optional parameters should be defined before** `import "HMLog.h"`, or you can modify the source code
+- **All optional parameters should be defined before** `#import "HMLog.h"`, or you can modify the source code
 
 ## License
 
